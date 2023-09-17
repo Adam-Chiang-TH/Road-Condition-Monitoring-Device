@@ -19,3 +19,11 @@ Like the vast majority of programming languages, Python executes from top to bot
 Previously, `from` and `import` is tested. By doing `from imported import func4 as f`, the function `func4()` from the `imported` module can be executed directly via `f()`. 
 
 When further subfolders are concerned, for example importing another module of the same name `imported.py` within `subfolder` subfolder, the line `import subfolder.imported` is used and functions are called using `subfolder.imported.func1()` for example.
+
+Additionally, dependencies are taken care of when doing `import`. For example: `from subfolder.dependency_test import functionWithDependency` imports only a single function, but that function has a dependency on `funcNotImported()` which isn't mentioned explicitly. Python takes care of this dependency without having to explicitly import `funcNotImported()` too.
+
+### Side Note
+
+The concatenation of `print()` can be done with `,` as in the case with `print("A", "B")` which prints `A B` and `+` as in the case with `print("A" + "B")` which prints `AB`.
+
+The former method is more versatile as the arguments don't have to be the same type (for example `print("A", 1)` which prints `A 1`). The separator is an empty space as default but can be changed via the `sep` parameter within the print function (e.g. `print("A", 1, sep="ba")` which prints `Aba1`).
