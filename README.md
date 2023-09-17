@@ -2,7 +2,7 @@
 
 ## `doc` Folder
 
-Documentation configuration for Doxygen.
+Documentation configuration for Doxygen as well as documentation for fresh installation of Raspberry Pi.
 
 ## `src` Folder
 
