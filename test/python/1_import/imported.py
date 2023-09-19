@@ -1,4 +1,6 @@
-print('imported.py has been imported! __name__ = ' + __name__)
+x = 30
+
+print("imported.py has been imported! __name__ = " + __name__ + "; x = ", x)
 
 def func1():
   return 3.1

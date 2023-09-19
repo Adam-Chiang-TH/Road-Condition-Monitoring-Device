@@ -1,4 +1,4 @@
-print('subfolder/imported.py has been imported! __name__ = ' + __name__)
+print("subfolder/imported.py has been imported! __name__ = " + __name__)
 
 def func1():
   return 600

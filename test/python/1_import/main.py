@@ -7,8 +7,12 @@ import subfolder.imported # run functions from this module using its full name (
 
 from subfolder.dependency_test import funcWithDependency
 
+x = 3
+
 def main():
   print("main() is run! __name__ = " + __name__ +"\n")
+
+  print(f"x = {x}\n")
 
   print("imported.func1():", imported.func1())
   print(f"imported.func1(): {imported.func1()}") # fstring method
