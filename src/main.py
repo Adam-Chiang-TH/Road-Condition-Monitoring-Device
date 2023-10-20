@@ -1,12 +1,18 @@
-import mv
-import iot
+import snapshotter
+import uploader
+
+def init():
+  snapshotter.init() # initialise camera
+  uploader.init() # connect to server
+  
+def run():
+    snapshotter.run()
+    uploader.run()
 
 def main():
-  mv.init() # initialise camera
-  iot.init() # connect to server
+  init()
   while True:
-    mv.run()
-    iot.run()
+    run()
 
 if __name__ == "__main__":
   main()
