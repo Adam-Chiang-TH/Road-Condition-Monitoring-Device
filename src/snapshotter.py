@@ -1,9 +1,12 @@
-
+from picamera2 import Picamera2
+from PIL import Image
 
 def init():
-  print("mv.init is run!")
-  pass
+  camera = Picamera2()
+  cameraConfig = camera.create_still_configuration()
+  camera.configure(cameraConfig)
+  camera.start()
+  return camera
 
-def run():
-  print("mv.run is run!")
-  pass
+def getImage(camera):
+  return camera.capture_image()
