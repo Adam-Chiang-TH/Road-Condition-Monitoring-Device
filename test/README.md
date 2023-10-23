@@ -22,6 +22,10 @@ Initialises, configures, and takes a still picture using the camera. Also saves 
 
 Obtains Unix epoch time from OS and converts to human-readable form.
 
+### `4_serial_for_gps`
+
+Prints out what is received from the serial port connected to the GPS module.
+
 ### `X_machine_vision`
 
 Performs machine vision on pre-determined dataset as if Pi took the pictures.
