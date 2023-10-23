@@ -26,6 +26,10 @@ Obtains Unix epoch time from OS and converts to human-readable form.
 
 Prints out what is received from the serial port connected to the GPS module.
 
+### `5_parser`
+
+Parse NMEA GPS sentence.
+
 ### `X_machine_vision`
 
 Performs machine vision on pre-determined dataset as if Pi took the pictures.
