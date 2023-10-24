@@ -2,15 +2,21 @@ from pydrive.drive import GoogleDrive
 from pydrive.auth import GoogleAuth
 
 gauth = GoogleAuth()
+dirName = "" # from logger
 
-def init():
+def init(name):
   # pydrive.auth
-  global gauth
+  global gauth, dirName
   gauth.LocalWebserverAuth() # Creates local webserver and auto handles authentication.
+  dirName = name
 
-def run():
-  print("iot.run is run!")
-  pass
+def run(filename):
+  drive = GoogleDrive(gauth)
+
+  actualFilenameList = filename.split('/')
+  file = drive.CreateFile({"title": actualFilenameList[-1]})
+  file.SetContentFile(filename)
+  file.Upload()
 
 # def run():
 #   # pydrive.drive

@@ -11,6 +11,8 @@ def init(inpName):
 
 def logImage(img, name):
   global countImage
-  # img.save(dirName + "/" + countImage + name + ".jpg")
-  img.save(f"{dirName}/{countImage}_{name}.jpg")
+  
+  ret = f"{dirName}/{countImage}_{name}.jpg"
+  img.save(ret)
   countImage += 1
+  return ret

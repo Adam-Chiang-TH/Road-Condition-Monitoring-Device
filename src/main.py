@@ -21,7 +21,7 @@ def main():
   snapshotter.init()
 
   # pos = coord_tracker.waitForPos()
-  # uploader.init()
+  # uploader.init(folderName)
 
   while True:
     coord_tracker._debug_ParseAndPrint()
@@ -29,7 +29,8 @@ def main():
     if time.time() - t1 >= 0.25:
       t1 = time.time()
       img = snapshotter.getImage()
-      logger.logImage(img, "{:.2f}".format(t1))
+      filename = logger.logImage(img, "{:.2f}".format(t1))
+      uploader.run(filename)
 
 if __name__ == "__main__":
   main()
