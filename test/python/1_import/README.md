@@ -27,3 +27,11 @@ Additionally, dependencies are taken care of when doing `import`. For example: `
 The concatenation of `print()` can be done with `,` as in the case with `print("A", "B")` which prints `A B` and `+` as in the case with `print("A" + "B")` which prints `AB`.
 
 The former method is more versatile as the arguments don't have to be the same type (for example `print("A", 1)` which prints `A 1`). The separator is an empty space as default but can be changed via the `sep` parameter within the print function (e.g. `print("A", 1, sep="ba")` which prints `Aba1`).
+
+## `2_list of string`
+
+`myList` is a list of 2 strings. To add 1 more string, use `myList.append(addedString)`. To append the string inside `myList`, you can use `myList[0] += "12"` to append `"12"` for example.
+
+`myList` can be cleared using `myList = []`.
+
+This test is done for the GPS sentence parser.

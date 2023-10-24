@@ -2,7 +2,7 @@
 
 ## `python`
 
-This folder serves as language-specific experimentation used by the lead programmer of this project to familiarise with Python.
+This folder serves as language-specific experimentation used to familiarise with Python.
 
 ### `1_import`
 

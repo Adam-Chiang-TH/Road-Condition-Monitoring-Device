@@ -1,4 +1,4 @@
-import gps # comes with gpsd
+# import gps # comes with gpsd, useless for parsing(?)
 import serial
 
 port = "/dev/serial0" # serial0 for GPIO14 and GPIO15
