@@ -1,11 +1,16 @@
 import os
 from PIL import Image
 
-folderName = ""
+dirName = ""
+countImage = 0
 
 def init(inpName):
-  folderName = inpName
-  os.mkdir(folderName)
+  global dirName
+  dirName = inpName
+  os.mkdir(dirName)
 
-def logImage():
-  pass
+def logImage(img, name):
+  global countImage
+  # img.save(dirName + "/" + countImage + name + ".jpg")
+  img.save(f"{dirName}/{countImage}_{name}.jpg")
+  countImage += 1

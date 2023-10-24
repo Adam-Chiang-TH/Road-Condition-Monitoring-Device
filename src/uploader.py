@@ -5,6 +5,7 @@ gauth = GoogleAuth()
 
 def init():
   # pydrive.auth
+  global gauth
   gauth.LocalWebserverAuth() # Creates local webserver and auto handles authentication.
 
 def run():

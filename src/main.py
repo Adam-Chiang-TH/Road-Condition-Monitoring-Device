@@ -16,19 +16,20 @@ def waitForUnixEpoch():
 def main():
   t1 = waitForUnixEpoch()
   folderName = time.strftime("%Y-%m-%d_%H-%M-%S")
-  logger.init("../log/" + folderName)
+  logger.init("../log/" + time.strftime("%Y-%m-%d_%H-%M-%S"))
 
-  camera = snapshotter.init()
-  snapshotter.getImage(camera).save("../log/" + folderName + "/a.jpg") # TODO: del
+  snapshotter.init()
 
   # pos = coord_tracker.waitForPos()
   # uploader.init()
 
-  # while True:
-  #   
-  #   if time.time() - t1 >= 0.25:
-  #     t1 = time.time()
-  #     img = snapshotter.getImage(camera)
+  while True:
+    coord_tracker._debug_ParseAndPrint()
+    
+    if time.time() - t1 >= 0.25:
+      t1 = time.time()
+      img = snapshotter.getImage()
+      logger.logImage(img, "{:.2f}".format(t1))
 
 if __name__ == "__main__":
   main()
