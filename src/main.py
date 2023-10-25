@@ -20,16 +20,22 @@ def main():
 
   snapshotter.init()
 
-  # (latitude, longitude) = coord_tracker.waitForPos()
+  latitudePrevious = ""
+  longitudePrevious = ""
+  # (latitudePrevious, longitudePrevious) = coord_tracker.waitForPos() # toggle comment this line if testing without coordinate
   uploader.init(folderName)
 
   while True:
-    coord_tracker._debug_ParseAndPrint()
-    
+    coord_tracker._debug_ParseAndPrint() # toggle comment this line to view raw GPS message
+    (hasPos, latitude, longitude) = coord_tracker.getPos()
+    if hasPos == True:
+      latitudePrevious  = latitude
+      longitudePrevious = longitude
     if time.time() - t1 >= 0.25:
       t1 = time.time()
       img = snapshotter.getImage()
-      filename = logger.logImage(img, "{:.2f}".format(t1))
+      # filename = logger.logImage(img, "{:.2f}".format(t1)) # test: lacks coordinate info
+      filename = logger.logImage(img, "{:.2f}".format(t1) + f"_{latitudePrevious}_{longitudePrevious}") # release: has coords
       uploader.run(filename)
 
 if __name__ == "__main__":

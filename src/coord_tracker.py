@@ -12,7 +12,7 @@ STATE_PARSER_STARTED = 1 # end at \r or \n
 STATE_PARSER_COMPLETED = 2 # \r or \n detected, full sentence parsed
 
 bufList = [""] # DON'T USE THIS FOR DECODING BECAUSE IT IS CLEARED IMMEDIATELY UPON PARSE COMPLETION!
-bufLisPrevious = [] # to save previous list, current buf is cleared immediately upon completion, USE THIS FOR DECODING!
+bufListPrevious = [] # to save previous list, current buf is cleared immediately upon completion, USE THIS FOR DECODING!
 indexBuf = 0
 stateParser = STATE_PARSER_IDLE
 
@@ -55,18 +55,38 @@ def runParser():
   return hasCompleted
 
 def decodeMessage():
-  pass
+  # talkerID = bufListPrevious[0][1:3] # not used if commented
+  sentenceID = bufListPrevious[0][-3:] # see: Python negative slicing
+  latitude = ""
+  longitude = ""
+  if sentenceID == "GGA":
+    latitude = bufListPrevious[2]
+    longitude = bufListPrevious[4]
+  elif sentenceID == "RMC":
+    latitude = bufListPrevious[3]
+    longitude = bufListPrevious[5]
+  return (latitude, longitude)
 
-def getCoord():
-  hasCoord = False
-  latitude = 0.00
-  longitude = 0.00
-
+def getPos():
+  hasPos = False
+  latitude = ""
+  longitude = ""
   if runParser():
-    hasCoord = True
     (latitude, longitude) = decodeMessage()
-    pass # decode here
-  return (hasCoord, latitude, longitude)
+    if len(latitude) > 0 and len(longitude) > 0:
+      hasPos = True
+  return (hasPos, latitude, longitude)
+
+def waitForPos():
+  hasPos = False
+  latitude = ""
+  longitude = ""
+
+  print("Waiting for coordinates from GPS...")
+  while hasPos == False:
+    (hasPos, latitude, longitude) = getPos()
+  print("Coordinates received!")
+  return (latitude, longitude)
 
 def _debug_ParseAndPrint():
   global bufList, indexBuf, stateParser
