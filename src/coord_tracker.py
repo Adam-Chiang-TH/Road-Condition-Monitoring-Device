@@ -1,11 +1,8 @@
-# the whole sentence ends with \r\n
+# The whole sentence ends with \r\n for ublox NEO-6M GPS module.
 
-# append when len of readline is not 0
-
-# import gps # comes with gpsd, useless for parsing(?)
 import serial
 
-port = "/dev/serial0" # serial0 for GPIO14 and GPIO15
+port = "/dev/serial0" # serial0 for GPIO14 and GPIO15 for Raspberry Pi 4 Model B
 
 STATE_PARSER_IDLE = 0 # wait for $
 STATE_PARSER_STARTED = 1 # end at \r or \n
