@@ -2,7 +2,7 @@
 
 ## `test`
 
-This folder includes test programs which test only a specific functionality as specified within the test.
+This folder includes test programs which test only a specific functionality as specified within the test. **All tests are successful unless specified.**
 
 ### `python`
 
@@ -29,6 +29,14 @@ Prints out what is received from the serial port connected to the GPS module.
 ### `5_parser`
 
 Parse NMEA GPS sentence.
+
+### `6_mock_geotag` (FAILED)
+
+Tries to geotag the .jpeg's exif, but fails due to encoding issues of the Pi camera images being saved. Just stuff the coords into the image filenames instead.
+
+### `7_drive_folder`
+
+Tries to create a folder on GDrive and upload a test file into the folder via PyDrive.
 
 ### `X_machine_vision`
 
