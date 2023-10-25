@@ -24,6 +24,10 @@ def main():
   file1 = drive.CreateFile({'title': "Hello.txt", "parents": [{"id": folderid}], "mimeType": "application/vnd.google-apps.folder"})
   file1.Upload()
 
+  fileImage = drive.CreateFile({'title': "inp.jpg", "parents": [{"id": folderid}], "mimeType": "image/jpeg"}) # https://copyprogramming.com/howto/python-pydrive-upload-to-specific-folder-not-own
+  fileImage.SetContentFile("inp.jpg")
+  fileImage.Upload()
+
 if __name__ == "__main__":
   main()
 else:
