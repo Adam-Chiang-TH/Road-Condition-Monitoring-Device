@@ -4,6 +4,7 @@ import coord_tracker
 import snapshotter
 import uploader
 import logger
+import startup_reporter
 
 from PIL import Image # TODO: del
 
@@ -14,6 +15,7 @@ def waitForUnixEpoch():
   return ret
 
 def main():
+  startup_reporter.buzzBuzz()
   t1 = waitForUnixEpoch()
   folderName = time.strftime("%Y-%m-%d_%H-%M-%S")
   logger.init("../log/" + time.strftime("%Y-%m-%d_%H-%M-%S"))
@@ -25,6 +27,7 @@ def main():
   # (latitudePrevious, longitudePrevious) = coord_tracker.waitForPos() # toggle comment this line if testing without coordinate
   uploader.init(folderName)
 
+  startup_reporter.shutUp()
   while True:
     coord_tracker._debug_ParseAndPrint() # toggle comment this line to view raw GPS message
     (hasPos, latitude, longitude) = coord_tracker.getPos()
