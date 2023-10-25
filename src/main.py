@@ -25,7 +25,7 @@ def main():
   latitudePrevious = ""
   longitudePrevious = ""
   # (latitudePrevious, longitudePrevious) = coord_tracker.waitForPos() # toggle comment this line if testing without coordinate
-  uploader.init(folderName)
+  # uploader.init(folderName)
 
   startup_reporter.shutUp()
   while True:
@@ -39,7 +39,7 @@ def main():
       img = snapshotter.getImage()
       # filename = logger.logImage(img, "{:.2f}".format(t1)) # test: lacks coordinate info
       filename = logger.logImage(img, "{:.2f}".format(t1) + f"_{latitudePrevious}_{longitudePrevious}") # release: has coords
-      uploader.run(filename)
+      # uploader.run(filename)
 
 if __name__ == "__main__":
   main()
