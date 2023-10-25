@@ -54,14 +54,19 @@ def runParser():
       updateParserState(chr(encodedChar)) # update again to not ignore the rest of the characters in line
   return hasCompleted
 
+def decodeMessage():
+  pass
+
 def getCoord():
   hasCoord = False
-  longitude = 0.00
   latitude = 0.00
+  longitude = 0.00
 
   if runParser():
+    hasCoord = True
+    (latitude, longitude) = decodeMessage()
     pass # decode here
-  return (hasCoord, longitude, latitude)
+  return (hasCoord, latitude, longitude)
 
 def _debug_ParseAndPrint():
   global bufList, indexBuf, stateParser

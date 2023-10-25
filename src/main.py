@@ -20,8 +20,8 @@ def main():
 
   snapshotter.init()
 
-  # pos = coord_tracker.waitForPos()
-  # uploader.init(folderName)
+  # (latitude, longitude) = coord_tracker.waitForPos()
+  uploader.init(folderName)
 
   while True:
     coord_tracker._debug_ParseAndPrint()

@@ -2,26 +2,24 @@ from pydrive.drive import GoogleDrive
 from pydrive.auth import GoogleAuth
 
 gauth = GoogleAuth()
-dirName = "" # from logger
+drive = GoogleDrive(gauth)
+folderName = "" # from logger, one folder level only no ('/')
+folderDriveID = ""
 
 def init(name):
-  # pydrive.auth
-  global gauth, dirName
-  gauth.LocalWebserverAuth() # Creates local webserver and auto handles authentication.
-  dirName = name
+  global gauth, drive, folderName, folderDriveID
+  gauth.LocalWebserverAuth()
+  folderName = name
 
-def run(filename):
-  drive = GoogleDrive(gauth)
+  folderMetadata = {'title' : folderName, 'mimeType' : 'application/vnd.google-apps.folder'}
+  folder = drive.CreateFile(folderMetadata)
+  folder.Upload()
+  folderDriveID = folder['id']
 
-  actualFilenameList = filename.split('/')
-  file = drive.CreateFile({"title": actualFilenameList[-1]})
-  file.SetContentFile(filename)
+def run(filenameWithDir):
+  global drive, folderName, folderDriveID
+
+  actualFilenameList = filenameWithDir.split('/')
+  file = drive.CreateFile({"title": actualFilenameList[-1], "parents": [{"id": folderDriveID}], "mimeType": "image/jpeg"})
+  file.SetContentFile(filenameWithDir)
   file.Upload()
-
-# def run():
-#   # pydrive.drive
-#   drive = GoogleDrive(gauth)
-
-#   file1 = drive.CreateFile({'title': 'Hello.txt'})  # Create GoogleDriveFile instance with title 'Hello.txt'.
-#   file1.SetContentString('Hello World!') # Set content of the file from given string.
-#   file1.Upload()
