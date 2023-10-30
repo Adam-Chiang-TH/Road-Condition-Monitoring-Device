@@ -5,6 +5,7 @@ camera = Picamera2()
 
 def init():
   global camera
+  camera.resolution = (1280, 720)
   cameraConfig = camera.create_still_configuration()
   camera.configure(cameraConfig)
   camera.start()
