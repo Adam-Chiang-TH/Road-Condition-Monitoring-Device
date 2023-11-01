@@ -11,10 +11,22 @@ folderDriveID = ""
 
 queueImagesToUpload = Queue()
 
-def worker():
+def _init():
+  global gauth, drive, folderName, folderDriveID
+  gauth.LocalWebserverAuth()
+
+  folderMetadata = {'title' : folderName, 'mimeType' : 'application/vnd.google-apps.folder'}
+  folder = drive.CreateFile(folderMetadata)
+  folder.Upload()
+  folderDriveID = folder['id']
+
+def _worker():
+  _init()
+
   global drive, folderName, folderDriveID
   while True:
-    filenameWithDir = queueImagesToUpload.get()  
+    print("worker thread started!")
+    filenameWithDir = queueImagesToUpload.get(block = True, timeout = None)  
 
     actualFilenameList = filenameWithDir.split('/')
     actualFilename = actualFilenameList[-1]
@@ -23,19 +35,12 @@ def worker():
     file.SetContentFile(filenameWithDir)
     file.Upload()
 
-    threadWorker.run()
-
-threadWorker = Thread(target = worker, daemon = True)
+threadWorker = Thread(target = _worker, daemon = True)
 
 def init(name):
-  global gauth, drive, folderName, folderDriveID
-  gauth.LocalWebserverAuth()
+  global folderName
   folderName = name
-
-  folderMetadata = {'title' : folderName, 'mimeType' : 'application/vnd.google-apps.folder'}
-  folder = drive.CreateFile(folderMetadata)
-  folder.Upload()
-  folderDriveID = folder['id']
+  threadWorker.start() # see https://docs.python.org/3/library/threading.html#threading.Thread.start
 
 def run(filenameWithDir):
   queueImagesToUpload.put(filenameWithDir)

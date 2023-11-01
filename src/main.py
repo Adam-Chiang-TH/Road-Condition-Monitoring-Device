@@ -6,7 +6,6 @@ import uploader
 import logger
 import startup_reporter
 
-
 def waitForUnixEpoch():
   ret = 0
   while ret == 0:
@@ -25,12 +24,14 @@ def main():
   latitudePrevious = ""
   longitudePrevious = ""
   # (latitudePrevious, longitudePrevious) = coord_tracker.waitForPos() # toggle comment this line if testing without coordinate
-  # uploader.init(folderName)
+  # startup_reporter.shutUp() # comment state follow the previous line
 
-  startup_reporter.shutUp()
+  uploader.init(folderName)
+
   while True:
+    if len(latitudePrevious) > 0 and len(longitudePrevious) > 0: # comment this and below line if waitForPos() is used
+      startup_reporter.shutUp()
     coord_tracker._debug_ParseAndPrint() # toggle comment this line to view raw GPS message
-    # print(time.time() - _debug_tBeginning)
     (hasPos, latitude, longitude) = coord_tracker.getPos()
     if hasPos == True:
       latitudePrevious  = latitude
@@ -40,6 +41,7 @@ def main():
       img = snapshotter.getImage()
       # filename = logger.logImage(img, "{:.2f}".format(t1)) # test: lacks coordinate info
       filename = logger.logImage(img, "{:.2f}".format(t1) + f"_{latitudePrevious}_{longitudePrevious}") # release: has coords
+      
       uploader.run(filename)
 
 if __name__ == "__main__":
