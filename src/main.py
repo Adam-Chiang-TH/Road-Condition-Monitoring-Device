@@ -23,13 +23,13 @@ def main():
 
   latitudePrevious = ""
   longitudePrevious = ""
-  # (latitudePrevious, longitudePrevious) = coord_tracker.waitForPos() # toggle comment this line if testing without coordinate
-  # startup_reporter.shutUp() # comment state follow the previous line
+  # (latitudePrevious, longitudePrevious) = coord_tracker.waitForPos() # toggle comment this line if waiting operation for coordinates desired
+  # startup_reporter.shutUp() # comment state follows the previous line
 
   uploader.init(folderName)
 
   while True:
-    if len(latitudePrevious) > 0 and len(longitudePrevious) > 0: # comment this and below line if waitForPos() is used
+    if len(latitudePrevious) > 0 and len(longitudePrevious) > 0:
       startup_reporter.shutUp()
     coord_tracker._debug_ParseAndPrint() # toggle comment this line to view raw GPS message
     (hasPos, latitude, longitude) = coord_tracker.getPos()
@@ -39,8 +39,7 @@ def main():
     if time.time() - t1 >= 0.25:
       t1 = time.time()
       img = snapshotter.getImage()
-      # filename = logger.logImage(img, "{:.2f}".format(t1)) # test: lacks coordinate info
-      filename = logger.logImage(img, "{:.2f}".format(t1) + f"_{latitudePrevious}_{longitudePrevious}") # release: has coords
+      filename = logger.logImage(img, "{:.2f}".format(t1) + f"_{latitudePrevious}_{longitudePrevious}")
       
       uploader.run(filename)
 
