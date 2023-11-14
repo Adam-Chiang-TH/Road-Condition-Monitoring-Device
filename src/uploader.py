@@ -31,7 +31,7 @@ def _worker():
     actualFilenameList = filenameWithDir.split('/')
     actualFilename = actualFilenameList[-1]
 
-    file = drive.CreateFile({"title": actualFilenameList[-1], "parents": [{"id": folderDriveID}], "mimeType": "image/jpeg"})
+    file = drive.CreateFile({"title": actualFilename, "parents": [{"id": folderDriveID}], "mimeType": "image/jpeg"})
     file.SetContentFile(filenameWithDir)
     file.Upload()
 
