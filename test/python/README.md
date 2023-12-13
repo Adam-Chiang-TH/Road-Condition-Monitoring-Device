@@ -1,5 +1,3 @@
-# Road-Monitoring-Device
-
 ## `python`
 
 This folder serves as language-specific experimentation used to familiarise with Python.

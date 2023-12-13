@@ -1,5 +1,3 @@
-# Road-Monitoring-Device
-
 ## `1_import`
 
 This test focuses on how `from`, `import`, and `as` keywords interact with the program and concerns 3 points: 

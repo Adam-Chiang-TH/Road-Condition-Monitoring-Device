@@ -1,5 +1,3 @@
-# Road-Monitoring-Device
-
 ## `test`
 
 This folder includes test programs which test only a specific functionality as specified within the test. **All tests are successful unless specified.**
@@ -38,6 +36,6 @@ Tries to geotag the .jpeg's exif, but fails due to encoding issues of the Pi cam
 
 Tries to create a folder on GDrive and upload a test file into the folder via PyDrive.
 
-### `X_machine_vision`
+### `X_machine_vision` (DEFERRED)
 
 Performs machine vision on pre-determined dataset as if Pi took the pictures.
